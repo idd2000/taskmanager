@@ -1,0 +1,38 @@
+{{ include('/base.html.twig') }}
+{% block body %}
+
+<div class="form-wrapp">
+    <h1>Форма работы с заявкой {{ task.id }}</h1>
+    <form method="post" action="/update/{{ task.id }}" enctype="multipart/form-data">
+        <div>
+            <label for="title">Заголовок</label>
+            <input type="text" name="title" value="{{ task.title }}"/>
+        </div>
+
+        <div class="w-100 image-list">
+            {% for image in images %}
+                <div class="image-item">
+                    <a class="image-del" href="/deleteimage/{{ task.id }}/{{ loop.index }}">x</a>
+                    <img src="/assets/img/{{ image }}" alt="Изображение {{ loop.index }}"/>
+                </div>
+            {% endfor %}
+            
+        </div>
+        
+        <input id="sendfiles" data-id="{{ task.id }}" type="file" name="images[]" accept="image/*" multiple/>
+        <select name="status" value="{{ task.status }}">
+            <option {% if task.status == 0%}selected{% endif %} value="0">отменена</option>
+            <option {% if task.status == 1%}selected{% endif %} value="1">новая</option>
+            <option {% if task.status == 2%}selected{% endif %} value="2">в работе</option>
+            <option {% if task.status == 3%}selected{% endif %} value="3">завершена</option>
+        </select>
+
+
+        <div>
+            <label for="text">Основной текст</label>
+            <textarea name="text">{{ task.text }}</textarea>
+        </div>
+        <input class="button" type="submit" value="Отправить" />
+    </form>
+</div>
+{% endblock %}

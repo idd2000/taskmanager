@@ -1,0 +1,28 @@
+{{ include('/base.html.twig') }}
+{% block body %}
+    <div id="tasks">
+        <h1>Список заявок</h1>
+        {% if tasks|length != 0 %}
+        <table border="1px" cellspacing="0" cellpadding="10px" style="width:100%; text-align:center">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Заголовок</th>
+                    <th>Изображения</th>
+                    <th>Основной текст</th>
+                    <th>Дата создания</th>
+                    <th>Дата редактирования</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+            {# Загружаются и рендерятся данные на стороне клиента через ajax #}
+            </tbody>
+        </table>
+        {% else %}
+            <h2>Список задач пуст!</h2>
+        {% endif %}
+    </div>
+    <div class="mt-20"><a class="button" href="/create">Добавить</a></div>
+{% endblock %}

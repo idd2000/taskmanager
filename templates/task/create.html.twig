@@ -1,0 +1,21 @@
+{{ include('/base.html.twig') }}
+{% block body %}
+<div class="form-wrapp">
+    <h1>Форма подачи заявки</h1>
+    <form method="post" action="/create" enctype="multipart/form-data">
+        <div>
+            <label for="title">Заголовок</label>
+            <input type="text" name="title" />
+        </div>
+        <div>
+            <label for="images[]">Загрузка изображений</label>
+            <input type="file" name="images[]" accept="image/*" multiple/>
+        </div>
+        <div>
+            <label for="text">Основной текст</label>
+            <textarea name="text"></textarea>
+        </div>
+        <input class="button" type="submit" value="Отправить" />
+    </form>
+</div>
+{% endblock %}
